@@ -56,3 +56,6 @@ compile
 m4/
 *.exe
 *.exe.stackdump
+msvc/.vs/
+msvc/x64/
+msvc/win32/

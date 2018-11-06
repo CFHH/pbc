@@ -3,7 +3,9 @@
 
 #include "darray.h"
 
+#ifndef _MSC_VER
 #pragma GCC visibility push(hidden)
+#endif
 
 struct symtab_s {
     darray_t list;
@@ -38,6 +40,8 @@ void *symtab_at(symtab_t t, const char *key);
 
 void symtab_forall_data(symtab_t t, void (*func)(void *));
 
+#ifndef _MSC_VER
 #pragma GCC visibility pop
+#endif
 
 #endif //__PBC_SYMTAB_H__

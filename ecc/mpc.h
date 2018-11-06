@@ -8,7 +8,9 @@
 #ifndef __PBC_MPC_H__
 #define __PBC_MPC_H__
 
+#ifndef _MSC_VER
 #pragma GCC visibility push(hidden)
+#endif
 
 struct mpc_s {
   mpf_t a;
@@ -88,6 +90,8 @@ void mpc_inv(mpc_t res, mpc_t z);
 size_t mpc_out_str(FILE *stream, int base, size_t n_digits, mpc_t op);
 void mpc_pow_ui(mpc_t res, mpc_t z, unsigned int n);
 
+#ifndef _MSC_VER
 #pragma GCC visibility pop
+#endif
 
 #endif //__PBC_MPC_H__

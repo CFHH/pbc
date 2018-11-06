@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{eb28b2da-3721-4b95-9754-0e38f1ad8848}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{b48f474c-a4a6-4723-a3f9-53c44a787d4a}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{d783b027-f9f8-4643-b99c-36917d3dd86a}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Source Files\arith">
+      <UniqueIdentifier>{d1c0f7ac-bbd7-49ca-8bc5-360382b78ba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ecc">
+      <UniqueIdentifier>{5a55585d-04f2-471b-9ef0-56c303a9ad37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\misc">
+      <UniqueIdentifier>{063a2d56-074a-4f0d-9a08-7cf440d617f7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\pbc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_a_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_a1_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_curve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_d_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_e_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_f_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_fieldquadratic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_fp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_g_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_hilbert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_i_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_mnt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_multiz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_pairing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_param.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_poly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_singular.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_ternary_extension_field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\pbc_z.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ecc\mpc.h">
+      <Filter>Source Files\ecc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ecc\param.h">
+      <Filter>Source Files\ecc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\misc\darray.h">
+      <Filter>Source Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\misc\symtab.h">
+      <Filter>Source Files\misc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\arith\dlog.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\fasterfp.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\fastfp.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\field.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\fieldquadratic.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\fp.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\init_random.win32.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\montfp.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\multiz.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\naivefp.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\poly.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\random.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\ternary_extension_field.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\tinyfp.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\arith\z.c">
+      <Filter>Source Files\arith</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\a_param.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\curve.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\d_param.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\e_param.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\eta_T_3.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\f_param.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\g_param.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\hilbert.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\mnt.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\mpc.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\pairing.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\param.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ecc\singular.c">
+      <Filter>Source Files\ecc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\misc\darray.c">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\misc\extend_printf.c">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\misc\get_time.win32.c">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\misc\memory.c">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\misc\symtab.c">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\misc\utils.c">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

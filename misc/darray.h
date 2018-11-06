@@ -4,7 +4,9 @@
 #ifndef __PBC_DARRAY_H__
 #define __PBC_DARRAY_H__
 
+#ifndef _MSC_VER
 #pragma GCC visibility push(hidden)
+#endif
 
 struct darray_s {
   void **item;
@@ -87,6 +89,8 @@ static inline void *darray_last(darray_t a) {
   return a->item[a->count - 1];
 }
 
+#ifndef _MSC_VER
 #pragma GCC visibility pop
+#endif
 
 #endif //__PBC_DARRAY_H__

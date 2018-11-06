@@ -7,7 +7,9 @@
 #ifndef __PARAM_UTILS_H__
 #define __PARAM_UTILS_H__
 
+#ifndef _MSC_VER
 #pragma GCC visibility push(hidden)
+#endif
 
 void param_out_type(FILE *stream, char *s);
 void param_out_mpz(FILE *stream, char *s, mpz_t z);
@@ -18,6 +20,8 @@ struct symtab_s; // let "include/pbc.h" not include "misc/symtab.h"
 int lookup_int(int *n, struct symtab_s *tab, const char *key);
 int lookup_mpz(mpz_t z, struct symtab_s *tab, const char *key);
 
+#ifndef _MSC_VER
 #pragma GCC visibility pop
+#endif
 
 #endif //__PARAM_UTILS_H__

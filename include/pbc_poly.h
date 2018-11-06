@@ -14,7 +14,9 @@ void field_init_poly(field_ptr f, field_ptr base_field);
 // Requires poly to be monic.
 void field_init_polymod(field_ptr f, element_ptr poly);
 
+#ifndef _MSC_VER
 #pragma GCC visibility push(hidden)
+#endif
 // Internal library functions:
 
 // Returns deg f.
@@ -52,6 +54,8 @@ void element_field_to_polymod(element_ptr f, element_ptr a);
 void polymod_const_mul(element_ptr res, element_ptr a, element_ptr e);
 int polymod_field_degree(field_t f);
 
+#ifndef _MSC_VER
 #pragma GCC visibility pop
+#endif
 
 #endif //__PBC_POLY_H__
