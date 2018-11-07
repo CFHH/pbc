@@ -32,7 +32,10 @@ static void gmp_guarantee_zero_memory(void) {
   __gmp_set_memory_functions(gmp_malloc, gmp_realloc, gmp_free);
 }
 
-__attribute__((constructor)) void init(void) {
+#ifndef _MSC_VER
+__attribute__((constructor))
+#endif
+void init(void) {
   gmp_guarantee_zero_memory();
 }
 

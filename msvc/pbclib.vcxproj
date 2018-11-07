@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <SccProjectName />
     <SccLocalPath />
-    <ProjectGuid>{ED82908E-6E34-4D2A-BC5A-9546014800C6}</ProjectGuid>
+    <ProjectGuid>{930E0562-A0F8-4319-AD02-1566FA8EFD8B}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -32,7 +32,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
@@ -44,7 +44,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
@@ -99,12 +99,12 @@
       <AdditionalIncludeDirectories>../include;.;./self-compiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
-      <PrecompiledHeaderOutputFile>.\Release\pbc.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release\pbclib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
     </ClCompile>
     <Midl>
-      <TypeLibraryName>.\Release\pbc.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release\pbclib.tlb</TypeLibraryName>
     </Midl>
     <ResourceCompile>
       <Culture>0x0804</Culture>
@@ -112,12 +112,12 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release\pbc.bsc</OutputFile>
+      <OutputFile>.\Release\pbclib.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Console</SubSystem>
-      <OutputFile>.\Release\pbc.exe</OutputFile>
+      <OutputFile>.\Release\pbclib.exe</OutputFile>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;./self-compiled/gmp.lib;./libeay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -140,7 +140,7 @@
       <DisableSpecificWarnings>4244;4267;4003;4996</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
-      <TypeLibraryName>.\Release\pbc.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release\pbclib.tlb</TypeLibraryName>
     </Midl>
     <ResourceCompile>
       <Culture>0x0804</Culture>
@@ -148,7 +148,7 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release\pbc.bsc</OutputFile>
+      <OutputFile>.\Release\pbclib.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -175,13 +175,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
       <BrowseInformation>true</BrowseInformation>
-      <PrecompiledHeaderOutputFile>.\Debug\pbc.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Debug\pbclib.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
     <Midl>
-      <TypeLibraryName>.\Debug\pbc.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug\pbclib.tlb</TypeLibraryName>
     </Midl>
     <ResourceCompile>
       <Culture>0x0804</Culture>
@@ -189,13 +189,13 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug\pbc.bsc</OutputFile>
+      <OutputFile>.\Debug\pbclib.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <OutputFile>.\Debug\pbc.exe</OutputFile>
+      <OutputFile>.\Debug\pbclib.exe</OutputFile>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;./gmp.lib;./libeay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -222,7 +222,7 @@
       <DisableSpecificWarnings>4244;4267;4003;4996</DisableSpecificWarnings>
     </ClCompile>
     <Midl>
-      <TypeLibraryName>.\Debug\pbc.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug\pbclib.tlb</TypeLibraryName>
     </Midl>
     <ResourceCompile>
       <Culture>0x0804</Culture>
@@ -230,7 +230,7 @@
     </ResourceCompile>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug\pbc.bsc</OutputFile>
+      <OutputFile>.\Debug\pbclib.bsc</OutputFile>
     </Bscmake>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
