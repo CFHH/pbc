@@ -1,5 +1,13 @@
 #include <stdint.h> // for intptr_t
+#ifdef _MSC_VER
+#include <time.h>
+struct timeval {
+    long    tv_sec;         /* seconds */
+    long    tv_usec;        /* and microseconds */
+};
+#else
 #include <sys/time.h>
+#endif
 #include "pbc_utils.h"
 
 typedef struct _FILETIME {

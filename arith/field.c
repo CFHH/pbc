@@ -641,7 +641,11 @@ void pbc_mpz_out_raw_n(unsigned char *data, int n, mpz_t z) {
 void pbc_mpz_from_hash(mpz_t z, mpz_t limit,
                        unsigned char *data, unsigned int len) {
   size_t i = 0, n, count = (mpz_sizeinbase(limit, 2) + 7) / 8;
+#ifdef _MSC_VER
+  unsigned char *buf = (unsigned char *)malloc(count * sizeof(unsigned char));
+#else
   unsigned char buf[count];
+#endif
   unsigned char counter = 0;
   int done = 0;
   for (;;) {
@@ -662,6 +666,10 @@ void pbc_mpz_from_hash(mpz_t z, mpz_t limit,
   while (mpz_cmp(z, limit) > 0) {
     mpz_tdiv_q_2exp(z, z, 1);
   }
+
+#ifdef _MSC_VER
+  free(buf);
+#endif
 }
 
 // Square root algorithm for Fp.

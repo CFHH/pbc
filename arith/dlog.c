@@ -57,7 +57,12 @@ void element_dlog_brute_force(element_t x, element_t g, element_t h) {
 void element_dlog_pollard_rho(element_t x, element_t g, element_t h) {
 // see Blake, Seroussi and Smart
 // only one snark for this implementation
+#ifdef _MSC_VER
+#define s 20
+  int i;
+#else
   int i, s = 20;
+#endif
   field_ptr Zr = x->field, G = g->field;
   element_t asum;
   element_t bsum;
@@ -184,4 +189,7 @@ void element_dlog_pollard_rho(element_t x, element_t g, element_t h) {
   element_clear(asum);
   element_clear(bsum);
   mpz_clear(counter);
+#ifdef _MSC_VER
+#undef s
+#endif
 }

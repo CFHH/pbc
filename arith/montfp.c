@@ -126,7 +126,11 @@ static void fp_to_mpz(mpz_ptr z, element_ptr e) {
     // x is stored as xR.
     // We must divide out R to convert to standard representation.
     fptr p = e->field->data;
+#ifdef _MSC_VER
+    mp_limb_t *tmp = (mp_limb_t *)malloc((2 * p->limbs) * sizeof(mp_limb_t));
+#else
     mp_limb_t tmp[2 * p->limbs];
+#endif
 
     memcpy(tmp, ep->d, p->limbs * sizeof(mp_limb_t));
     memset(&tmp[p->limbs], 0, p->limbs * sizeof(mp_limb_t));
@@ -134,6 +138,10 @@ static void fp_to_mpz(mpz_ptr z, element_ptr e) {
     mont_reduce(z->_mp_d, tmp, p);
     // Remove leading zero limbs.
     for (z->_mp_size = p->limbs; !z->_mp_d[z->_mp_size - 1]; z->_mp_size--);
+
+#ifdef _MSC_VER
+    free(tmp);
+#endif
   }
 }
 
@@ -335,7 +343,11 @@ static inline void mont_mul(mp_limb_t *c, mp_limb_t *a, mp_limb_t *b,
   // Instead of right shifting every iteration
   // I allocate more room for the z array.
   size_t i, t = p->limbs;
+#ifdef _MSC_VER
+  mp_limb_t *z = (mp_limb_t *)malloc((2 * t + 1) * sizeof(mp_limb_t));
+#else
   mp_limb_t z[2 * t + 1];
+#endif
   mp_limb_t u = (a[0] * b[0]) * p->negpinv;
   mp_limb_t v = z[t] = mpn_mul_1(z, b, t, a[0]);
   z[t] += mpn_addmul_1(z, p->primelimbs, t, u);
@@ -359,6 +371,10 @@ static inline void mont_mul(mp_limb_t *c, mp_limb_t *a, mp_limb_t *b,
        mpz_set(z1, z2);
      */
   }
+
+#ifdef _MSC_VER
+  free(z);
+#endif
 }
 
 static void fp_mul(element_ptr c, element_ptr a, element_ptr b) {
@@ -400,7 +416,11 @@ static void fp_invert(element_ptr c, element_ptr a) {
   eptr ad = a->data;
   eptr cd = c->data;
   fptr p = a->field->data;
+#ifdef _MSC_VER
+  mp_limb_t *tmp = (mp_limb_t *)malloc(p->limbs * sizeof(mp_limb_t));
+#else
   mp_limb_t tmp[p->limbs];
+#endif
   mpz_t z;
 
   mpz_init(z);
@@ -415,6 +435,10 @@ static void fp_invert(element_ptr c, element_ptr a) {
   mont_mul(cd->d, tmp, p->R3, p);
   cd->flag = 2;
   mpz_clear(z);
+
+#ifdef _MSC_VER
+  free(tmp);
+#endif
 }
 
 static void fp_random(element_ptr a) {
