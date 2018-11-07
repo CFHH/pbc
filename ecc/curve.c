@@ -840,27 +840,45 @@ int element_length_in_bytes_x_only(element_ptr e) {
   return element_length_in_bytes(P->x);
 }
 
-inline element_ptr curve_x_coord(element_t e) {
+#ifndef _MSC_VER
+inline
+#endif
+element_ptr curve_x_coord(element_t e) {
   return ((point_ptr) e->data)->x;
 }
 
-inline element_ptr curve_y_coord(element_t e) {
+#ifndef _MSC_VER
+inline
+#endif
+element_ptr curve_y_coord(element_t e) {
   return ((point_ptr) e->data)->y;
 }
 
-inline element_ptr curve_a_coeff(element_t e) {
+#ifndef _MSC_VER
+inline
+#endif
+element_ptr curve_a_coeff(element_t e) {
   return ((curve_data_ptr) e->field->data)->a;
 }
 
-inline element_ptr curve_b_coeff(element_t e) {
+#ifndef _MSC_VER
+inline
+#endif
+element_ptr curve_b_coeff(element_t e) {
   return ((curve_data_ptr) e->field->data)->b;
 }
 
-inline element_ptr curve_field_a_coeff(field_t f) {
+#ifndef _MSC_VER
+inline
+#endif
+element_ptr curve_field_a_coeff(field_t f) {
   return ((curve_data_ptr) f->data)->a;
 }
 
-inline element_ptr curve_field_b_coeff(field_t f) {
+#ifndef _MSC_VER
+inline
+#endif
+element_ptr curve_field_b_coeff(field_t f) {
   return ((curve_data_ptr) f->data)->b;
 }
 
