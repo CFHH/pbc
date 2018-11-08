@@ -31,4 +31,6 @@ Selects a random 'bits'-bit integer 'z'.
 */
 PBC_DECLSPEC_EXPORT void pbc_mpz_randomb(mpz_t z, unsigned int bits);
 
+
+PBC_DECLSPEC_EXPORT void pbc_init_random(void);
 #endif //__PBC_RANDOM_H__

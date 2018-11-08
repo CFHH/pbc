@@ -6,7 +6,7 @@
 #include "pbc_utils.h"
 #include "pbc_memory.h"
 
-void pbc_init_random(void);
+//void pbc_init_random(void);
 
 // Must use pointer due to lack of gmp_randstate_ptr.
 static gmp_randstate_t *get_rs(void) {

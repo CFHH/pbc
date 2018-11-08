@@ -138,6 +138,7 @@
       <ObjectFileName>$(IntDir)du\m\my\%(RelativeDir)</ObjectFileName>
       <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <DisableSpecificWarnings>4244;4267;4003;4996</DisableSpecificWarnings>
+      <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Midl>
       <TypeLibraryName>.\Release\pbc.tlb</TypeLibraryName>
@@ -220,6 +221,7 @@
       <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DisableSpecificWarnings>4244;4267;4003;4996</DisableSpecificWarnings>
+      <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Midl>
       <TypeLibraryName>.\Debug\pbc.tlb</TypeLibraryName>
