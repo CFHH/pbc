@@ -7,6 +7,8 @@
 #ifndef __PBC_PAIRING_H__
 #define __PBC_PAIRING_H__
 
+#include <_pbc_export.h>
+
 struct pairing_pp_s {
   struct pairing_s *pairing;
   void *data;
@@ -51,7 +53,7 @@ typedef struct pairing_s *pairing_ptr;
 Get ready to perform a pairing whose first input is 'in1',
 and store the results of time-saving precomputation in 'p'.
 */
-static inline void pairing_pp_init(pairing_pp_t p, element_t in1, pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void pairing_pp_init(pairing_pp_t p, element_t in1, pairing_t pairing) {
   if (element_is0(in1)) {
     p->pairing = NULL;
     return;
@@ -63,7 +65,7 @@ static inline void pairing_pp_init(pairing_pp_t p, element_t in1, pairing_t pair
 /*@manual pairing_apply
 Clear 'p'. This should be called after 'p' is no longer needed.
 */
-static inline void pairing_pp_clear(pairing_pp_t p) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void pairing_pp_clear(pairing_pp_t p) {
   if (!p->pairing) {
     // happens when p was initialized with identity
     return;
@@ -76,7 +78,7 @@ Compute a pairing using 'in2' and the preprocessed information stored in 'p'
 and store the output in 'out'. The inputs to the pairing are the element
 previously used to initialize 'p' and the element 'in2'.
 */
-static inline void pairing_pp_apply(element_t out, element_t in2, pairing_pp_t p) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void pairing_pp_apply(element_t out, element_t in2, pairing_pp_t p) {
   if (!p->pairing) {
     element_set0(out);
     return;
@@ -92,19 +94,19 @@ static inline void pairing_pp_apply(element_t out, element_t in2, pairing_pp_t p
 Initialize pairing from parameters in a ASCIIZ string 'str'
 Returns 0 on success, 1 on failure.
 */
-int pairing_init_set_str(pairing_t pairing, const char *s);
+PBC_DECLSPEC_EXPORT int pairing_init_set_str(pairing_t pairing, const char *s);
 
 /*@manual pairing_init
 Same, but read at most 'len' bytes.
 If 'len' is 0, it behaves as the previous function.
 Returns 0 on success, 1 on failure.
 */
-int pairing_init_set_buf(pairing_t pairing, const char *s, size_t len);
+PBC_DECLSPEC_EXPORT int pairing_init_set_buf(pairing_t pairing, const char *s, size_t len);
 
 /*@manual pairing_init
 Initialize a pairing with pairing parameters 'p'.
 */
-void pairing_init_pbc_param(struct pairing_s *pairing, pbc_param_ptr p);
+PBC_DECLSPEC_EXPORT void pairing_init_pbc_param(struct pairing_s *pairing, pbc_param_ptr p);
 
 /*@manual pairing_init
 Free the space occupied by 'pairing'. Call
@@ -113,9 +115,9 @@ Only call this after all elements associated with 'pairing'
 have been cleared, as they need information stored in the 'pairing'
 structure.
 */
-void pairing_clear(pairing_t pairing);
+PBC_DECLSPEC_EXPORT void pairing_clear(pairing_t pairing);
 
-static inline void pairing_apply(element_t out, element_t in1, element_t in2,
+/*PBC_DECLSPEC_EXPORT*/ static inline void pairing_apply(element_t out, element_t in1, element_t in2,
     pairing_t pairing) {
   PBC_ASSERT(pairing->GT == out->field, "pairing output mismatch");
   PBC_ASSERT(pairing->G1 == in1->field, "pairing 1st input mismatch");
@@ -138,7 +140,7 @@ static inline void pairing_apply(element_t out, element_t in1, element_t in2,
 Computes a pairing: 'out' = 'e'('in1', 'in2'),
 where 'in1', 'in2', 'out' must be in the groups G1, G2, GT.
 */
-static inline void element_pairing(element_t out, element_t in1, element_t in2) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void element_pairing(element_t out, element_t in1, element_t in2) {
   pairing_ptr pairing = out->field->pairing;
   PBC_ASSERT(pairing != NULL, "pairing output mismatch");
   pairing_apply(out, in1, in2, pairing);
@@ -150,7 +152,7 @@ Computes the product of pairings, that is
 The arrays 'in1', 'in2' must have at least 'n' elements belonging to
 the groups G1, G2 respectively, and 'out' must belong to the group GT.
 */
-static inline void element_prod_pairing(
+/*PBC_DECLSPEC_EXPORT*/ static inline void element_prod_pairing(
     element_t out, element_t in1[], element_t in2[], int n) {
   pairing_ptr pairing = out->field->pairing;
   int i;
@@ -173,14 +175,14 @@ static inline void element_prod_pairing(
 /*@manual pairing_op
 Returns true if G1 and G2 are the same group.
 */
-static inline int pairing_is_symmetric(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_is_symmetric(pairing_t pairing) {
   return pairing->G1 == pairing->G2;
 }
 
 /*@manual pairing_op
 Returns the length in bytes needed to represent an element of G1.
 */
-static inline int pairing_length_in_bytes_G1(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_G1(pairing_t pairing) {
   return pairing->G1->fixed_length_in_bytes;
 }
 
@@ -188,7 +190,7 @@ static inline int pairing_length_in_bytes_G1(pairing_t pairing) {
 Returns the length in bytes needed to represent the x-coordinate of
 an element of G1.
 */
-static inline int pairing_length_in_bytes_x_only_G1(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_x_only_G1(pairing_t pairing) {
   return pairing->G1->fixed_length_in_bytes / 2;
 }
 
@@ -196,14 +198,14 @@ static inline int pairing_length_in_bytes_x_only_G1(pairing_t pairing) {
 Returns the length in bytes needed to represent a compressed form of
 an element of G1. There is some overhead in decompressing.
 */
-static inline int pairing_length_in_bytes_compressed_G1(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_compressed_G1(pairing_t pairing) {
   return pairing->G1->fixed_length_in_bytes / 2 + 1;
 }
 
 /*@manual pairing_op
 Returns the length in bytes needed to represent an element of G2.
 */
-static inline int pairing_length_in_bytes_G2(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_G2(pairing_t pairing) {
   return pairing->G2->fixed_length_in_bytes;
 }
 
@@ -211,7 +213,7 @@ static inline int pairing_length_in_bytes_G2(pairing_t pairing) {
 Returns the length in bytes needed to represent a compressed form of
 an element of G2. There is some overhead in decompressing.
 */
-static inline int pairing_length_in_bytes_compressed_G2(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_compressed_G2(pairing_t pairing) {
   return pairing->G2->fixed_length_in_bytes / 2 + 1;
 }
 
@@ -219,45 +221,45 @@ static inline int pairing_length_in_bytes_compressed_G2(pairing_t pairing) {
 Returns the length in bytes needed to represent the x-coordinate of
 an element of G2.
 */
-static inline int pairing_length_in_bytes_x_only_G2(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_x_only_G2(pairing_t pairing) {
   return pairing->G2->fixed_length_in_bytes / 2;
 }
 
 /*@manual pairing_op
 Returns the length in bytes needed to represent an element of GT.
 */
-static inline int pairing_length_in_bytes_GT(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_GT(pairing_t pairing) {
   return pairing->GT->fixed_length_in_bytes;
 }
 
 /*@manual pairing_op
 Returns the length in bytes needed to represent an element of Zr.
 */
-static inline int pairing_length_in_bytes_Zr(pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline int pairing_length_in_bytes_Zr(pairing_t pairing) {
   return pairing->Zr->fixed_length_in_bytes;
 }
 
-static inline int is_almost_coddh(element_t a, element_t b,
+/*PBC_DECLSPEC_EXPORT*/ static inline int is_almost_coddh(element_t a, element_t b,
     element_t c, element_t d, pairing_t pairing) {
   return pairing->is_almost_coddh(a, b, c, d, pairing);
 }
 
 /*@manual einit.1
 */
-static inline void element_init_G1(element_t e, pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void element_init_G1(element_t e, pairing_t pairing) {
   element_init(e, pairing->G1);
 }
 
 /*@manual einit.1
 */
-static inline void element_init_G2(element_t e, pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void element_init_G2(element_t e, pairing_t pairing) {
   element_init(e, pairing->G2);
 }
 
 /*@manual einit.1
 Initialize 'e' to be an element of the group G1, G2 or GT of 'pairing'.
 */
-static inline void element_init_GT(element_t e, pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void element_init_GT(element_t e, pairing_t pairing) {
   element_init(e, pairing->GT);
 }
 
@@ -265,16 +267,16 @@ static inline void element_init_GT(element_t e, pairing_t pairing) {
 Initialize 'e' to be an element of the ring Z_r of 'pairing'.
 r is the order of the groups G1, G2 and GT that are involved in the pairing.
 */
-static inline void element_init_Zr(element_t e, pairing_t pairing) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void element_init_Zr(element_t e, pairing_t pairing) {
   element_init(e, pairing->Zr);
 }
 
-static inline void pairing_option_set(pairing_t pairing, char *key, char *value) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void pairing_option_set(pairing_t pairing, char *key, char *value) {
   pairing->option_set(pairing, key, value);
 }
 
 // Initialize GT = group of rth roots of unity in f.
 // Requires pairing->r has been set.
-void pairing_GT_init(pairing_ptr pairing, field_t f);
+PBC_DECLSPEC_EXPORT void pairing_GT_init(pairing_ptr pairing, field_t f);
 
 #endif //__PBC_PAIRING_H__

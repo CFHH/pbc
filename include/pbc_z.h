@@ -7,6 +7,8 @@
 #ifndef __PBC_FIELDMPZ_H__
 #define __PBC_FIELDMPZ_H__
 
-void field_init_z(field_ptr f);
+#include <_pbc_export.h>
+
+PBC_DECLSPEC_EXPORT void field_init_z(field_ptr f);
 
 #endif //__PBC_FIELDMPZ_H__

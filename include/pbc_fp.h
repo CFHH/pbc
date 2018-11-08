@@ -10,17 +10,19 @@
 #ifndef __PBC_FP_H__
 #define __PBC_FP_H__
 
-void field_init_naive_fp(field_ptr f, mpz_t prime);
-void field_init_tiny_fp(field_ptr f, mpz_t prime);
-void field_init_fast_fp(field_ptr f, mpz_t prime);
-void field_init_faster_fp(field_ptr f, mpz_t prime);
-void field_init_mont_fp(field_ptr f, mpz_t prime);
+#include <_pbc_export.h>
 
-void pbc_tweak_use_fp(char *s);
+PBC_DECLSPEC_EXPORT void field_init_naive_fp(field_ptr f, mpz_t prime);
+PBC_DECLSPEC_EXPORT void field_init_tiny_fp(field_ptr f, mpz_t prime);
+PBC_DECLSPEC_EXPORT void field_init_fast_fp(field_ptr f, mpz_t prime);
+PBC_DECLSPEC_EXPORT void field_init_faster_fp(field_ptr f, mpz_t prime);
+PBC_DECLSPEC_EXPORT void field_init_mont_fp(field_ptr f, mpz_t prime);
 
-void element_tonelli(element_ptr x, element_ptr a);
+PBC_DECLSPEC_EXPORT void pbc_tweak_use_fp(char *s);
 
-void field_init_fp(field_ptr f, mpz_t prime);
+PBC_DECLSPEC_EXPORT void element_tonelli(element_ptr x, element_ptr a);
 
-int pbc_mpz_set_str(mpz_t z, const char *s, int base);
+PBC_DECLSPEC_EXPORT void field_init_fp(field_ptr f, mpz_t prime);
+
+PBC_DECLSPEC_EXPORT int pbc_mpz_set_str(mpz_t z, const char *s, int base);
 #endif //__PBC_FP_H__

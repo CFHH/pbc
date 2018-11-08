@@ -6,8 +6,10 @@
 #ifndef __PBC_D_PARAM_H__
 #define __PBC_D_PARAM_H__
 
+#include <_pbc_export.h>
+
 struct symtab_s;
-int pbc_param_init_d(pbc_param_ptr par, struct symtab_s *tab);
+PBC_DECLSPEC_EXPORT int pbc_param_init_d(pbc_param_ptr par, struct symtab_s *tab);
 
 /*@manual dparam
 Type D curves are generated using the complex multiplication (CM) method.  This
@@ -35,6 +37,6 @@ Among the bundled type D curve parameters are the curves 9563-201-181,
 See `gen/listmnt.c` and `gen/gendparam.c` for how to generate type D pairing
 parameters.
 */
-void pbc_param_init_d_gen(pbc_param_ptr p, pbc_cm_ptr cm);
+PBC_DECLSPEC_EXPORT void pbc_param_init_d_gen(pbc_param_ptr p, pbc_cm_ptr cm);
 
 #endif //__PBC_D_PARAM_H__

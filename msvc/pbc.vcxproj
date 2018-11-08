@@ -270,6 +270,7 @@
     <ClInclude Include="..\include\pbc_test.h" />
     <ClInclude Include="..\include\pbc_utils.h" />
     <ClInclude Include="..\include\pbc_z.h" />
+    <ClInclude Include="..\include\_pbc_export.h" />
     <ClInclude Include="..\misc\darray.h" />
     <ClInclude Include="..\misc\symtab.h" />
   </ItemGroup>

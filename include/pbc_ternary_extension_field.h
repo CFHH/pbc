@@ -10,13 +10,15 @@
 #ifndef __PBC_TERNARY_EXTENSION_FIELD_H__
 #define __PBC_TERNARY_EXTENSION_FIELD_H__
 
+#include <_pbc_export.h>
+
 /* initialize $f$ as $GF(3)[x]/(x^m + x^t + 2)$ */
-void field_init_gf3m(field_t f, unsigned m, unsigned t);
+PBC_DECLSPEC_EXPORT void field_init_gf3m(field_t f, unsigned m, unsigned t);
 
 /* initialize $f$ as $base_field[x]/(x^2 + 1)$ */
-void field_init_gf32m(field_t f, field_t base_field);
+PBC_DECLSPEC_EXPORT void field_init_gf32m(field_t f, field_t base_field);
 
 /* initialize $f$ as $base_field[x]/(x^3 - x - 1)$ */
-void field_init_gf33m(field_t f, field_t base_field);
+PBC_DECLSPEC_EXPORT void field_init_gf33m(field_t f, field_t base_field);
 
 #endif //__PBC_TERNARY_EXTENSION_FIELD_H__

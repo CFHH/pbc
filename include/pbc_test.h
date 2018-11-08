@@ -3,11 +3,13 @@
 #ifndef __PBC_TEST_H__
 #define __PBC_TEST_H__
 
+#include <_pbc_export.h>
+
 /*@manual test
 Initializes pairing from file specified as first argument, or from standard
 input if there is no first argument.
 */
-static inline void pbc_demo_pairing_init(pairing_t pairing, int argc, char **argv) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void pbc_demo_pairing_init(pairing_t pairing, int argc, char **argv) {
   char s[16384];
   FILE *fp = stdin;
 
@@ -26,7 +28,7 @@ static inline void pbc_demo_pairing_init(pairing_t pairing, int argc, char **arg
 Returns seconds elapsed since the first call to this function.
 Returns 0 the first time.
 */
-double pbc_get_time(void);
+PBC_DECLSPEC_EXPORT double pbc_get_time(void);
 
 /*@manual test
 Macro: if `condition` evaluates to 0 then print an error.
