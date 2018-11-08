@@ -37,13 +37,13 @@ Macro: if elements `a`, `b` and `c` are from different fields then exit.
 By default error messages are printed to standard error.
 Call `pbc_set_msg_to_stderr(0)` to suppress messages.
 */
-PBC_DECLSPEC_EXPORT int pbc_set_msg_to_stderr(int i);
+PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_set_msg_to_stderr(int i);
 
 /*@manual log
 Reports error message and exits with code 128.
 */
 #ifdef _MSC_VER
-PBC_DECLSPEC_EXPORT __declspec(noreturn) void pbc_die(const char *err, ...);
+PBC_DECLSPEC_EXPORT __declspec(noreturn) void PBC_STDCALL pbc_die(const char *err, ...);
 #else
 void pbc_die(const char *err, ...)
 __attribute__((__noreturn__))
@@ -54,7 +54,7 @@ __attribute__((format(printf, 1, 2)));
 Reports informational message.
 */
 #ifdef _MSC_VER
-PBC_DECLSPEC_EXPORT void pbc_info(const char *err, ...);
+PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_info(const char *err, ...);
 #else
 void pbc_info(const char *err, ...)
     __attribute__((format (printf, 1, 2)));
@@ -64,7 +64,7 @@ void pbc_info(const char *err, ...)
 Reports warning message.
 */
 #ifdef _MSC_VER
-PBC_DECLSPEC_EXPORT void pbc_warn(const char *err, ...);
+PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_warn(const char *err, ...);
 #else
 void pbc_warn(const char *err, ...)
     __attribute__((format (printf, 1, 2)));
@@ -74,7 +74,7 @@ void pbc_warn(const char *err, ...)
 Reports error message.
 */
 #ifdef _MSC_VER
-PBC_DECLSPEC_EXPORT void pbc_error(const char *err, ...);
+PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_error(const char *err, ...);
 #else
 void pbc_error(const char *err, ...)
     __attribute__((format (printf, 1, 2)));
@@ -97,7 +97,7 @@ void pbc_error(const char *err, ...)
 // For storing small integers in void *
 // C99 standard introduced the intptr_t and uintptr_t types,
 // guaranteed to be able to hold pointers
-/*PBC_DECLSPEC_EXPORT*/ static inline void *int_to_voidp(intptr_t i) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void * PBC_STDCALL int_to_voidp(intptr_t i) {
   return (void *) i;
 }
 

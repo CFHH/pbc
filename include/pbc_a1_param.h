@@ -7,7 +7,7 @@
 #include <_pbc_export.h>
 
 struct symtab_s;
-PBC_DECLSPEC_EXPORT int pbc_param_init_a1(pbc_param_ptr par, struct symtab_s *tab);
+PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_param_init_a1(pbc_param_ptr par, struct symtab_s *tab);
 
 /*@manual a1param
 Generate type A1 pairing parameters and store them in 'p'.  The group order
@@ -22,6 +22,6 @@ The file `param/a1.param` contains sample parameters for a
 type A1 pairing, but it is only for benchmarking: it is useless without
 the factorization of +n+, the order of the group.
 */
-PBC_DECLSPEC_EXPORT void pbc_param_init_a1_gen(pbc_param_t param, mpz_t n);
+PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_param_init_a1_gen(pbc_param_t param, mpz_t n);
 
 #endif //__PBC_A1_PARAM_H__

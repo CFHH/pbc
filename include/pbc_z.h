@@ -9,6 +9,6 @@
 
 #include <_pbc_export.h>
 
-PBC_DECLSPEC_EXPORT void field_init_z(field_ptr f);
+PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_z(field_ptr f);
 
 #endif //__PBC_FIELDMPZ_H__

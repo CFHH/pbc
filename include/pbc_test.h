@@ -9,7 +9,7 @@
 Initializes pairing from file specified as first argument, or from standard
 input if there is no first argument.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void pbc_demo_pairing_init(pairing_t pairing, int argc, char **argv) {
+/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL pbc_demo_pairing_init(pairing_t pairing, int argc, char **argv) {
   char s[16384];
   FILE *fp = stdin;
 
@@ -28,7 +28,7 @@ input if there is no first argument.
 Returns seconds elapsed since the first call to this function.
 Returns 0 the first time.
 */
-PBC_DECLSPEC_EXPORT double pbc_get_time(void);
+PBC_DECLSPEC_EXPORT double PBC_STDCALL pbc_get_time(void);
 
 /*@manual test
 Macro: if `condition` evaluates to 0 then print an error.
