@@ -8,7 +8,7 @@
 #include <_pbc_export.h>
 
 struct symtab_s;
-PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_param_init_e(pbc_param_ptr par, struct symtab_s *tab);
+PBC_EXTERN int PBC_STDCALL pbc_param_init_e(pbc_param_ptr par, struct symtab_s *tab);
 
 /*@manual eparam
 Generate type E pairing parameters and store them in 'p',
@@ -26,6 +26,6 @@ If discrete log in field extensions are found to be substantially easier to
 solve than previously thought, or discrete log can be solved in elliptic curves
 as easily as they can be in finite fields, this pairing type may become useful.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_param_init_e_gen(pbc_param_t p, int rbits, int qbits);
+PBC_EXTERN void PBC_STDCALL pbc_param_init_e_gen(pbc_param_t p, int rbits, int qbits);
 
 #endif //__PBC_E_PARAM_H__

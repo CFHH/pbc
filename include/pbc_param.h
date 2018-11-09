@@ -25,26 +25,26 @@ typedef struct pbc_param_s pbc_param_t[1];
 Initializes pairing parameters from the string 's'.
 Returns 0 if successful, 1 otherwise.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_param_init_set_str(pbc_param_t par, const char *s);
+PBC_EXTERN int PBC_STDCALL pbc_param_init_set_str(pbc_param_t par, const char *s);
 
 /*@manual param
 Same, but read at most 'len' bytes.
 If 'len' is 0, it behaves as the previous function.
 Returns 0 if successful, 1 otherwise.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_param_init_set_buf(pbc_param_t par, const char *s, size_t len);
+PBC_EXTERN int PBC_STDCALL pbc_param_init_set_buf(pbc_param_t par, const char *s, size_t len);
 
 /*@manual param
 Write pairing parameters to ''stream'' in a text format.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL pbc_param_out_str(FILE *stream, pbc_param_ptr p) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL pbc_param_out_str(FILE *stream, pbc_param_ptr p) {
   p->api->out_str(stream, p->data);
 }
 
 /*@manual param
 Clear 'p'. Call after 'p' is no longer needed.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL pbc_param_clear(pbc_param_ptr p) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL pbc_param_clear(pbc_param_ptr p) {
   p->api->clear(p->data);
 }
 

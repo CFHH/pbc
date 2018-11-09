@@ -13,12 +13,12 @@
 #include <_pbc_export.h>
 
 /* initialize $f$ as $GF(3)[x]/(x^m + x^t + 2)$ */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_gf3m(field_t f, unsigned m, unsigned t);
+PBC_EXTERN void PBC_STDCALL field_init_gf3m(field_t f, unsigned m, unsigned t);
 
 /* initialize $f$ as $base_field[x]/(x^2 + 1)$ */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_gf32m(field_t f, field_t base_field);
+PBC_EXTERN void PBC_STDCALL field_init_gf32m(field_t f, field_t base_field);
 
 /* initialize $f$ as $base_field[x]/(x^3 - x - 1)$ */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_gf33m(field_t f, field_t base_field);
+PBC_EXTERN void PBC_STDCALL field_init_gf33m(field_t f, field_t base_field);
 
 #endif //__PBC_TERNARY_EXTENSION_FIELD_H__

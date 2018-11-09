@@ -29,9 +29,9 @@ struct element_pp_s {
 typedef struct element_pp_s element_pp_t[1];
 typedef struct element_pp_s *element_pp_ptr;
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_assert(int expr, char *msg, const char *func);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_assert_match2(element_ptr a, element_ptr b, const char *func);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_assert_match3(element_ptr a, element_ptr b, element_ptr c,
+PBC_EXTERN void PBC_STDCALL pbc_assert(int expr, char *msg, const char *func);
+PBC_EXTERN void PBC_STDCALL pbc_assert_match2(element_ptr a, element_ptr b, const char *func);
+PBC_EXTERN void PBC_STDCALL pbc_assert_match3(element_ptr a, element_ptr b, element_ptr c,
                        const char *func);
 
 struct multiz_s;
@@ -107,25 +107,25 @@ typedef struct field_s field_t[1];
 
 typedef void (PBC_STDCALL *fieldmap) (element_t dst, element_t src);
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_out_info(FILE* out, field_ptr f);
+PBC_EXTERN void PBC_STDCALL field_out_info(FILE* out, field_ptr f);
 
 /*@manual internal
 Initialize 'e' to be an element of the algebraic structure 'f'
 and set it to be the zero element.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_init(element_t e, field_ptr f) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_init(element_t e, field_ptr f) {
   e->field = f;
   f->init(e);
 }
 
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL element_new(field_ptr f);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL element_free(element_ptr e);
+PBC_EXTERN element_ptr PBC_STDCALL element_new(field_ptr f);
+PBC_EXTERN void PBC_STDCALL element_free(element_ptr e);
 
 /*@manual einit
 Initialize 'e' to be an element of the algebraic structure that 'e2'
 lies in.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_init_same_as(element_t e, element_t e2) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_init_same_as(element_t e, element_t e2) {
   element_init(e, e2->field);
 }
 
@@ -133,7 +133,7 @@ lies in.
 Free the space occupied by 'e'. Call this when
 the variable 'e' is no longer needed.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_clear(element_t e) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_clear(element_t e) {
   e->field->clear(e);
 }
 
@@ -141,21 +141,21 @@ the variable 'e' is no longer needed.
 Output 'e' on 'stream' in base 'base'. The base must be between
 2 and 36.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline size_t PBC_STDCALL element_out_str(FILE * stream, int base, element_t e) {
+/*PBC_EXTERN*/ static inline size_t PBC_STDCALL element_out_str(FILE * stream, int base, element_t e) {
   return e->field->out_str(stream, base, e);
 }
 
 /*@manual eio
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_printf(const char *format, ...);
+PBC_EXTERN int PBC_STDCALL element_printf(const char *format, ...);
 
 /*@manual eio
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_fprintf(FILE * stream, const char *format, ...);
+PBC_EXTERN int PBC_STDCALL element_fprintf(FILE * stream, const char *format, ...);
 
 /*@manual eio
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_snprintf(char *buf, size_t size, const char *fmt, ...);
+PBC_EXTERN int PBC_STDCALL element_snprintf(char *buf, size_t size, const char *fmt, ...);
 
 /*@manual eio
 Same as printf family
@@ -168,17 +168,17 @@ of *element_t*, and 'Y', 'Z' conversion specifiers for
 
 will print the value of 'e' in a human-readable form on standard output.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_vsnprintf(char *buf, size_t size, const char *fmt, va_list ap);
+PBC_EXTERN int PBC_STDCALL element_vsnprintf(char *buf, size_t size, const char *fmt, va_list ap);
 
 /*@manual eio
 Convert an element to a human-friendly string.
 Behaves as *snprintf* but only on one element at a time.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_snprint(char *s, size_t n, element_t e) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_snprint(char *s, size_t n, element_t e) {
   return e->field->snprint(s, n, e);
 }
 
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_set_multiz(element_t e, multiz m) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_set_multiz(element_t e, multiz m) {
   e->field->set_multiz(e, m);
 }
 
@@ -190,47 +190,47 @@ Returns number of characters read (unlike GMP's mpz_set_str).
 A return code of zero means PBC could not find a well-formed string
 describing an element.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_set_str(element_t e, const char *s, int base) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_set_str(element_t e, const char *s, int base) {
   return e->field->set_str(e, s, base);
 }
 
 /*@manual eassign
 Set 'e' to zero.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_set0(element_t e) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_set0(element_t e) {
   e->field->set0(e);
 }
 
 /*@manual eassign
 Set 'e' to one.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_set1(element_t e) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_set1(element_t e) {
   e->field->set1(e);
 }
 
 /*@manual eassign
 Set 'e' to 'i'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_set_si(element_t e, signed long int i) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_set_si(element_t e, signed long int i) {
   e->field->set_si(e, i);
 }
 
 /*@manual eassign
 Set 'e' to 'z'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_set_mpz(element_t e, mpz_t z) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_set_mpz(element_t e, mpz_t z) {
   e->field->set_mpz(e, z);
 }
 
 /*@manual eassign
 Set 'e' to 'a'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_set(element_t e, element_t a) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_set(element_t e, element_t a) {
   PBC_ASSERT_MATCH2(e, a);
   e->field->set(e, a);
 }
 
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_add_ui(element_t n, element_t a,
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_add_ui(element_t n, element_t a,
                                   unsigned long int b) {
   n->field->add_ui(n, a, b);
 }
@@ -239,11 +239,11 @@ Set 'e' to 'a'.
 Converts 'e' to a GMP integer 'z'
 if such an operation makes sense
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_to_mpz(mpz_t z, element_t e) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_to_mpz(mpz_t z, element_t e) {
   e->field->to_mpz(z, e);
 }
 
-/*PBC_DECLSPEC_EXPORT*/ static inline long PBC_STDCALL element_to_si(element_t e) {
+/*PBC_EXTERN*/ static inline long PBC_STDCALL element_to_si(element_t e) {
   mpz_t z;
   mpz_init(z);
   e->field->to_mpz(z, e);
@@ -256,14 +256,14 @@ if such an operation makes sense
 Generate an element 'e' deterministically from
 the 'len' bytes stored in the buffer 'data'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_from_hash(element_t e, void *data, int len) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_from_hash(element_t e, void *data, int len) {
   e->field->from_hash(e, data, len);
 }
 
 /*@manual earith
 Set 'n' to 'a' + 'b'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_add(element_t n, element_t a, element_t b) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_add(element_t n, element_t a, element_t b) {
   PBC_ASSERT_MATCH3(n, a, b);
   n->field->add(n, a, b);
 }
@@ -271,7 +271,7 @@ Set 'n' to 'a' + 'b'.
 /*@manual earith
 Set 'n' to 'a' - 'b'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_sub(element_t n, element_t a, element_t b) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_sub(element_t n, element_t a, element_t b) {
   PBC_ASSERT_MATCH3(n, a, b);
   n->field->sub(n, a, b);
 }
@@ -279,19 +279,19 @@ Set 'n' to 'a' - 'b'.
 /*@manual earith
 Set 'n' = 'a' 'b'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_mul(element_t n, element_t a, element_t b) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_mul(element_t n, element_t a, element_t b) {
   PBC_ASSERT_MATCH3(n, a, b);
   n->field->mul(n, a, b);
 }
 
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_cubic(element_t n, element_t a) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_cubic(element_t n, element_t a) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->cubic(n, a);
 }
 
 /*@manual earith
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_mul_mpz(element_t n, element_t a, mpz_t z) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_mul_mpz(element_t n, element_t a, mpz_t z) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->mul_mpz(n, a, z);
 }
@@ -299,7 +299,7 @@ Set 'n' = 'a' 'b'.
 /*@manual earith
 Set 'n' = 'a' 'z', that is 'a' + 'a' + ... + 'a' where there are 'z' 'a'#'s#.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_mul_si(element_t n, element_t a,
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_mul_si(element_t n, element_t a,
                                   signed long int z) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->mul_si(n, a, z);
@@ -310,7 +310,7 @@ Set 'n' = 'a' 'z', that is 'a' + 'a' + ... + 'a' where there are 'z' 'a'#'s#.
 Set 'c' = 'a' 'z', that is 'a' + 'a' + ... + 'a'
 where there are 'z' 'a''s.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_mul_zn(element_t c, element_t a, element_t z) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_mul_zn(element_t c, element_t a, element_t z) {
   mpz_t z0;
   PBC_ASSERT_MATCH2(c, a);
   //TODO: check z->field is Zn
@@ -323,7 +323,7 @@ where there are 'z' 'a''s.
 /*@manual earith
 Set 'n' = 'a' / 'b'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_div(element_t n, element_t a, element_t b) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_div(element_t n, element_t a, element_t b) {
   PBC_ASSERT_MATCH3(n, a, b);
   n->field->div(n, a, b);
 }
@@ -331,23 +331,23 @@ Set 'n' = 'a' / 'b'.
 /*@manual earith
 Set 'n' = 'a' + 'a'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_double(element_t n, element_t a) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_double(element_t n, element_t a) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->doub(n, a);
 }
 
 // Set n_i = a_i + a_i for all i at one time.
 // Uses multi_doub(), which only elliptic curves have at the moment.
-PBC_DECLSPEC_EXPORT void PBC_STDCALL element_multi_double(element_t n[], element_t a[], int m);
+PBC_EXTERN void PBC_STDCALL element_multi_double(element_t n[], element_t a[], int m);
 
 // Set n_i =a_i + b_i for all i at one time.
 // Uses multi_add(), which only elliptic curves have at the moment.
-PBC_DECLSPEC_EXPORT void PBC_STDCALL element_multi_add(element_t n[], element_t a[],element_t b[], int m);
+PBC_EXTERN void PBC_STDCALL element_multi_add(element_t n[], element_t a[],element_t b[], int m);
 
 /*@manual earith
 Set 'n' = 'a/2'
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_halve(element_t n, element_t a) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_halve(element_t n, element_t a) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->halve(n, a);
 }
@@ -355,7 +355,7 @@ Set 'n' = 'a/2'
 /*@manual earith
 Set 'n' = 'a'^2^
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_square(element_t n, element_t a) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_square(element_t n, element_t a) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->square(n, a);
 }
@@ -364,7 +364,7 @@ Set 'n' = 'a'^2^
 Set 'x' = 'a'^'n'^, that is
 'a' times 'a' times ... times 'a' where there are 'n' 'a'#'s#.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pow_mpz(element_t x, element_t a, mpz_t n) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pow_mpz(element_t x, element_t a, mpz_t n) {
   PBC_ASSERT_MATCH2(x, a);
   x->field->pow_mpz(x, a, n);
 }
@@ -373,7 +373,7 @@ Set 'x' = 'a'^'n'^, that is
 Set 'x' = 'a'^'n'^, where 'n' is an element of a ring *Z*~N~
 for some 'N' (typically the order of the algebraic structure 'x' lies in).
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pow_zn(element_t x, element_t a, element_t n) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pow_zn(element_t x, element_t a, element_t n) {
   mpz_t z;
   PBC_ASSERT_MATCH2(x, a);
   mpz_init(z);
@@ -385,7 +385,7 @@ for some 'N' (typically the order of the algebraic structure 'x' lies in).
 /*@manual earith
 Set 'n' = -'a'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_neg(element_t n, element_t a) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_neg(element_t n, element_t a) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->neg(n, a);
 }
@@ -393,7 +393,7 @@ Set 'n' = -'a'.
 /*@manual earith
 Set 'n' to the inverse of 'a'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_invert(element_t n, element_t a) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_invert(element_t n, element_t a) {
   PBC_ASSERT_MATCH2(n, a);
   n->field->invert(n, a);
 }
@@ -402,28 +402,28 @@ Set 'n' to the inverse of 'a'.
 If the 'e' lies in a finite algebraic structure,
 assigns a uniformly random element to 'e'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_random(element_t e) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_random(element_t e) {
   e->field->random(e);
 }
 
 /*@manual ecmp
 Returns true if 'n' is 1.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_is1(element_t n) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_is1(element_t n) {
   return n->field->is1(n);
 }
 
 /*@manual ecmp
 Returns true if 'n' is 0.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_is0(element_t n) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_is0(element_t n) {
   return n->field->is0(n);
 }
 
 /*@manual ecmp
 Returns 0 if 'a' and 'b' are the same, nonzero otherwise.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_cmp(element_t a, element_t b) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_cmp(element_t a, element_t b) {
   PBC_ASSERT_MATCH2(a, b);
   return a->field->cmp(a, b);
 }
@@ -432,13 +432,13 @@ Returns 0 if 'a' and 'b' are the same, nonzero otherwise.
 Returns nonzero if 'a' is a perfect square (quadratic residue),
 zero otherwise.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_is_sqr(element_t a) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_is_sqr(element_t a) {
   return a->field->is_sqr(a);
 }
 
 /*@manual ecmp
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_sgn(element_t a) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_sgn(element_t a) {
   return a->field->sign(a);
 }
 
@@ -449,11 +449,11 @@ element_sgn('a') = -element_sgn(-'a')
 and
 element_sgn('a') = 0 implies 'a' = 0 with overwhelming probability.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_sign(element_t a) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_sign(element_t a) {
   return a->field->sign(a);
 }
 
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_sqrt(element_t a, element_t b) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_sqrt(element_t a, element_t b) {
   PBC_ASSERT_MATCH2(a, b);
   a->field->sqrt(a, b);
 }
@@ -461,7 +461,7 @@ element_sgn('a') = 0 implies 'a' = 0 with overwhelming probability.
 /*@manual etrade
 Returns the length in bytes the element 'e' will take to represent
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_length_in_bytes(element_t e) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_length_in_bytes(element_t e) {
   if (e->field->fixed_length_in_bytes < 0) {
     return e->field->length_in_bytes(e);
   } else {
@@ -474,14 +474,14 @@ Converts 'e' to byte, writing the result in the buffer 'data'.
 The number of bytes it will write can be determined from calling
 *element_length_in_bytes()*. Returns number of bytes written.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_to_bytes(unsigned char *data, element_t e) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_to_bytes(unsigned char *data, element_t e) {
   return e->field->to_bytes(data, e);
 }
 
 /*@manual etrade
 Reads 'e' from the buffer 'data', and returns the number of bytes read.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_from_bytes(element_t e, unsigned char *data) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_from_bytes(element_t e, unsigned char *data) {
   return e->field->from_bytes(e, data);
 }
 
@@ -489,13 +489,13 @@ Reads 'e' from the buffer 'data', and returns the number of bytes read.
 Sets 'x' = 'a1'^'n1'^ 'a2'^'n2'^, and is generally faster than
 performing two separate exponentiations.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL element_pow2_mpz(element_t x, element_t a1, mpz_t n1, element_t a2,
+PBC_EXTERN void PBC_STDCALL element_pow2_mpz(element_t x, element_t a1, mpz_t n1, element_t a2,
                       mpz_t n2);
 /*@manual epow
 Also sets 'x' = 'a1'^'n1'^ 'a2'^'n2'^,
 but 'n1', 'n2' must be elements of a ring *Z*~n~ for some integer n.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pow2_zn(element_t x, element_t a1, element_t n1,
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pow2_zn(element_t x, element_t a1, element_t n1,
                                    element_t a2, element_t n2) {
   mpz_t z1, z2;
   mpz_init(z1);
@@ -511,14 +511,14 @@ but 'n1', 'n2' must be elements of a ring *Z*~n~ for some integer n.
 Sets 'x' = 'a1'^'n1'^ 'a2'^'n2'^ 'a3'^'n3'^,
 generally faster than performing three separate exponentiations.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL element_pow3_mpz(element_t x, element_t a1, mpz_t n1,
+PBC_EXTERN void PBC_STDCALL element_pow3_mpz(element_t x, element_t a1, mpz_t n1,
                       element_t a2, mpz_t n2, element_t a3, mpz_t n3);
 
 /*@manual epow
 Also sets 'x' = 'a1'^'n1'^ 'a2'^'n2'^ 'a3'^'n3'^,
 but 'n1', 'n2', 'n3' must be elements of a ring *Z*~n~ for some integer n.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pow3_zn(element_t x, element_t a1, element_t n1,
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pow3_zn(element_t x, element_t a1, element_t n1,
                                    element_t a2, element_t n2,
                                    element_t a3, element_t n3) {
   mpz_t z1, z2, z3;
@@ -534,15 +534,15 @@ but 'n1', 'n2', 'n3' must be elements of a ring *Z*~n~ for some integer n.
   mpz_clear(z3);
 }
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_clear(field_ptr f);
+PBC_EXTERN void PBC_STDCALL field_clear(field_ptr f);
 
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL field_get_nqr(field_ptr f);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_set_nqr(field_ptr f, element_t nqr);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_gen_nqr(field_ptr f);
+PBC_EXTERN element_ptr PBC_STDCALL field_get_nqr(field_ptr f);
+PBC_EXTERN void PBC_STDCALL field_set_nqr(field_ptr f, element_t nqr);
+PBC_EXTERN void PBC_STDCALL field_gen_nqr(field_ptr f);
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init(field_ptr f);
+PBC_EXTERN void PBC_STDCALL field_init(field_ptr f);
 
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL mpz_is0(mpz_t z) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL mpz_is0(mpz_t z) {
   return !mpz_sgn(z);
   //return !mpz_cmp_ui(z, 0);
 }
@@ -551,7 +551,7 @@ PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init(field_ptr f);
 Assumes 'e' is a point on an elliptic curve.
 Writes the x-coordinate of 'e' to the buffer 'data'
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_to_bytes_x_only(unsigned char *data, element_t e);
+PBC_EXTERN int PBC_STDCALL element_to_bytes_x_only(unsigned char *data, element_t e);
 /*@manual etrade
 Assumes 'e' is a point on an elliptic curve.
 Sets 'e' to a point with
@@ -559,38 +559,38 @@ x-coordinate represented by the buffer 'data'. This is not unique.
 For each 'x'-coordinate, there exist two different points, at least
 for the elliptic curves in PBC. (They are inverses of each other.)
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_from_bytes_x_only(element_t e, unsigned char *data);
+PBC_EXTERN int PBC_STDCALL element_from_bytes_x_only(element_t e, unsigned char *data);
 /*@manual etrade
 Assumes 'e' is a point on an elliptic curve.
 Returns the length in bytes needed to hold the x-coordinate of 'e'.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_length_in_bytes_x_only(element_t e);
+PBC_EXTERN int PBC_STDCALL element_length_in_bytes_x_only(element_t e);
 
 /*@manual etrade
 If possible, outputs a compressed form of the element 'e' to
 the buffer of bytes 'data'.
 Currently only implemented for points on an elliptic curve.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_to_bytes_compressed(unsigned char *data, element_t e);
+PBC_EXTERN int PBC_STDCALL element_to_bytes_compressed(unsigned char *data, element_t e);
 
 /*@manual etrade
 Sets element 'e' to the element in compressed form in the buffer of bytes
 'data'.
 Currently only implemented for points on an elliptic curve.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_from_bytes_compressed(element_t e, unsigned char *data);
+PBC_EXTERN int PBC_STDCALL element_from_bytes_compressed(element_t e, unsigned char *data);
 
 /*@manual etrade
 Returns the number of bytes needed to hold 'e' in compressed form.
 Currently only implemented for points on an elliptic curve.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL element_length_in_bytes_compressed(element_t e);
+PBC_EXTERN int PBC_STDCALL element_length_in_bytes_compressed(element_t e);
 
 /*@manual epow
 Prepare to exponentiate an element 'in', and store preprocessing information
 in 'p'.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pp_init(element_pp_t p, element_t in) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pp_init(element_pp_t p, element_t in) {
   p->field = in->field;
   in->field->pp_init(p, in);
 }
@@ -598,7 +598,7 @@ in 'p'.
 /*@manual epow
 Clear 'p'. Should be called after 'p' is no longer needed.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pp_clear(element_pp_t p) {
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pp_clear(element_pp_t p) {
   p->field->pp_clear(p);
 }
 
@@ -607,7 +607,7 @@ Raise 'in' to 'power' and store the result in 'out', where 'in'
 is a previously preprocessed element, that is, the second argument
 passed to a previous *element_pp_init* call.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pp_pow(element_t out, mpz_ptr power,
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pp_pow(element_t out, mpz_ptr power,
                                   element_pp_t p) {
   p->field->pp_pow(out, power, p);
 }
@@ -615,7 +615,7 @@ passed to a previous *element_pp_init* call.
 /*@manual epow
 Same except 'power' is an element of *Z*~n~ for some integer n.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline void PBC_STDCALL element_pp_pow_zn(element_t out, element_t power,
+/*PBC_EXTERN*/ static inline void PBC_STDCALL element_pp_pow_zn(element_t out, element_t power,
                                      element_pp_t p) {
   mpz_t z;
   mpz_init(z);
@@ -624,8 +624,8 @@ Same except 'power' is an element of *Z*~n~ for some integer n.
   mpz_clear(z);
 }
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_mpz_out_raw_n(unsigned char *data, int n, mpz_t z);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_mpz_from_hash(mpz_t z, mpz_t limit,
+PBC_EXTERN void PBC_STDCALL pbc_mpz_out_raw_n(unsigned char *data, int n, mpz_t z);
+PBC_EXTERN void PBC_STDCALL pbc_mpz_from_hash(mpz_t z, mpz_t limit,
                        unsigned char *data, unsigned int len);
 
 /*@manual etrade
@@ -633,7 +633,7 @@ For points, returns the number of coordinates.
 For polynomials, returns the number of coefficients.
 Otherwise returns zero.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline int PBC_STDCALL element_item_count(element_t e) {
+/*PBC_EXTERN*/ static inline int PBC_STDCALL element_item_count(element_t e) {
   return e->field->item_count(e);
 }
 
@@ -643,7 +643,7 @@ For polynomials, returns coefficient of 'x^n^'.
 Otherwise returns NULL.
 The element the return value points to may be modified.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline element_ptr PBC_STDCALL element_item(element_t e, int i) {
+/*PBC_EXTERN*/ static inline element_ptr PBC_STDCALL element_item(element_t e, int i) {
   // TODO: Document the following:
   // For polynomials, never zero the leading coefficient, e.g. never write:
   //  element_set0(element_item(f, poly_degree(f)));
@@ -653,7 +653,7 @@ The element the return value points to may be modified.
 
 // Returns the field containing the items.
 // Returns NULL if there are no items.
-/*PBC_DECLSPEC_EXPORT*/ static inline field_ptr PBC_STDCALL element_item_field(element_t e) {
+/*PBC_EXTERN*/ static inline field_ptr PBC_STDCALL element_item_field(element_t e) {
   if (!element_item_count(e)) return NULL;
   return element_item(e, 0)->field;
 }
@@ -661,13 +661,13 @@ The element the return value points to may be modified.
 /*@manual etrade
 Equivalent to `element_item(a, 0)`.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline element_ptr PBC_STDCALL element_x(element_ptr a) {
+/*PBC_EXTERN*/ static inline element_ptr PBC_STDCALL element_x(element_ptr a) {
   return a->field->get_x(a);
 }
 /*@manual etrade
 Equivalent to `element_item(a, 1)`.
 */
-/*PBC_DECLSPEC_EXPORT*/ static inline element_ptr PBC_STDCALL element_y(element_ptr a) {
+/*PBC_EXTERN*/ static inline element_ptr PBC_STDCALL element_y(element_ptr a) {
   return a->field->get_y(a);
 }
 
@@ -675,18 +675,18 @@ Equivalent to `element_item(a, 1)`.
 Computes 'x' such that 'g^x^ = h' by brute force, where
 'x' lies in a field where `element_set_mpz()` makes sense.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL element_dlog_brute_force(element_t x, element_t g, element_t h);
+PBC_EXTERN void PBC_STDCALL element_dlog_brute_force(element_t x, element_t g, element_t h);
 
 /*@manual epow
 Computes 'x' such that 'g^x^ = h' using Pollard rho method, where
 'x' lies in a field where `element_set_mpz()` makes sense.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL element_dlog_pollard_rho(element_t x, element_t g, element_t h);
+PBC_EXTERN void PBC_STDCALL element_dlog_pollard_rho(element_t x, element_t g, element_t h);
 
 // Trial division up to a given limit. If limit == NULL, then there is no limit.
 // Call the callback for each factor found, abort and return 1 if the callback
 // returns nonzero, otherwise return 0.
-PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_trial_divide(int (*fun)(mpz_t factor,
+PBC_EXTERN int PBC_STDCALL pbc_trial_divide(int (*fun)(mpz_t factor,
                                 unsigned int multiplicity,
                                 void *scope_ptr),
                      void *scope_ptr,

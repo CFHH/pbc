@@ -20,11 +20,11 @@ typedef struct pbc_cm_s pbc_cm_t[1];
 /*@manual cminfo
 Initializes 'cm'.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_cm_init(pbc_cm_t cm);
+PBC_EXTERN void PBC_STDCALL pbc_cm_init(pbc_cm_t cm);
 /*@manual cminfo
 Clears 'cm'.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_cm_clear(pbc_cm_t cm);
+PBC_EXTERN void PBC_STDCALL pbc_cm_clear(pbc_cm_t cm);
 
 /*@manual cminfo
 For a given discriminant D, searches for type D pairings suitable for
@@ -34,7 +34,7 @@ found, call 'callback' with +pbc_cm_t+ and given +void *+. If the callback
 returns nonzero, stops search and returns that value.
 Otherwise returns 0.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_cm_search_d(int (*callback)(pbc_cm_ptr, void *), void *data,
+PBC_EXTERN int PBC_STDCALL pbc_cm_search_d(int (*callback)(pbc_cm_ptr, void *), void *data,
   unsigned int D, unsigned int bitlimit);
 
 /*@manual cminfo
@@ -45,7 +45,7 @@ found, call 'callback' with +pbc_cm_t+ and given +void *+. If the callback
 returns nonzero, stops search and returns that value.
 Otherwise returns 0.
 */
-PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_cm_search_g(int (*callback)(pbc_cm_ptr, void *), void *data,
+PBC_EXTERN int PBC_STDCALL pbc_cm_search_g(int (*callback)(pbc_cm_ptr, void *), void *data,
   unsigned int D, unsigned int bitlimit);
 
 #endif //__PBC_MNT_H__

@@ -8,7 +8,7 @@
 #include <_pbc_export.h>
 
 struct symtab_s;
-PBC_DECLSPEC_EXPORT int PBC_STDCALL pbc_param_init_f(pbc_param_ptr par, struct symtab_s *tab);
+PBC_EXTERN int PBC_STDCALL pbc_param_init_f(pbc_param_ptr par, struct symtab_s *tab);
 
 /*@manual fparam
 Generate type F pairing parameters and store them in 'p'.
@@ -24,6 +24,6 @@ short signatures). The current implementation makes them slow.
 If finite field discrete log algorithms improve further, type D pairings will
 have to use larger fields, but type F can still remain short, up to a point.
 */
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_param_init_f_gen(pbc_param_t p, int bits);
+PBC_EXTERN void PBC_STDCALL pbc_param_init_f_gen(pbc_param_t p, int bits);
 
 #endif //__PBC_F_PARAM_H__

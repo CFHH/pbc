@@ -31,52 +31,52 @@
 // during the pairing computation.
 
 // Initialize a subgroup of points on the curve Y^2 = X^3 + b.
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_curve_b(field_ptr f, element_ptr b, mpz_t order, mpz_t cofac);
+PBC_EXTERN void PBC_STDCALL field_init_curve_b(field_ptr f, element_ptr b, mpz_t order, mpz_t cofac);
 
 // Initialize a subgroup of points on the curve with the given j-invariant.
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_curve_j(field_t f, element_ptr j, mpz_t order, mpz_t cofac);
+PBC_EXTERN void PBC_STDCALL field_init_curve_j(field_t f, element_ptr j, mpz_t order, mpz_t cofac);
 
 // Initialize a subgroup of points on the curve Y^2 = X^3 + a X + b.
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_curve_ab(field_ptr f, element_ptr a, element_ptr b, mpz_t order, mpz_t cofac);
+PBC_EXTERN void PBC_STDCALL field_init_curve_ab(field_ptr f, element_ptr a, element_ptr b, mpz_t order, mpz_t cofac);
 
 // Reinitialize as the subgroup of points on the twist curve.
 // Requires j-invariant of the original curve != 0, 1728.
 // Mangles f, thus existing points of f become invalid.
 // TODO: Refactor so we can remove this from the interface.
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_reinit_curve_twist(field_t f);
+PBC_EXTERN void PBC_STDCALL field_reinit_curve_twist(field_t f);
 
 // Compute trace of Frobenius at q^n given trace at q.
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_mpz_trace_n(mpz_t res, mpz_t q, mpz_t trace, int n);
+PBC_EXTERN void PBC_STDCALL pbc_mpz_trace_n(mpz_t res, mpz_t q, mpz_t trace, int n);
 
 // Given q, t such that #E(F_q) = q - t + 1, compute #E(F_q^k).
-PBC_DECLSPEC_EXPORT void PBC_STDCALL pbc_mpz_curve_order_extn(mpz_t res, mpz_t q, mpz_t t, int k);
+PBC_EXTERN void PBC_STDCALL pbc_mpz_curve_order_extn(mpz_t res, mpz_t q, mpz_t t, int k);
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_curve_with_map(field_ptr cnew, field_ptr c,
+PBC_EXTERN void PBC_STDCALL field_init_curve_with_map(field_ptr cnew, field_ptr c,
   field_ptr dstfield, fieldmap map);
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_init_curve_ab_map(field_t cnew, field_t c,
+PBC_EXTERN void PBC_STDCALL field_init_curve_ab_map(field_t cnew, field_t c,
   fieldmap map, field_ptr mapdest,
   mpz_t ordernew, mpz_t cofacnew);
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_curve_use_random_solvefory(field_ptr f);
+PBC_EXTERN void PBC_STDCALL field_curve_use_random_solvefory(field_ptr f);
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL field_curve_set_quotient_cmp(field_ptr c, mpz_t quotient_cmp);
+PBC_EXTERN void PBC_STDCALL field_curve_set_quotient_cmp(field_ptr c, mpz_t quotient_cmp);
 
 #ifndef _MSC_VER
 #pragma GCC visibility push(hidden)
 #endif
 // Internal:
 
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL curve_x_coord(element_t e);
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL curve_y_coord(element_t e);
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL curve_a_coeff(element_t e);
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL curve_b_coeff(element_t e);
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL curve_field_a_coeff(field_t f);
-PBC_DECLSPEC_EXPORT element_ptr PBC_STDCALL curve_field_b_coeff(field_t f);
+PBC_EXTERN element_ptr PBC_STDCALL curve_x_coord(element_t e);
+PBC_EXTERN element_ptr PBC_STDCALL curve_y_coord(element_t e);
+PBC_EXTERN element_ptr PBC_STDCALL curve_a_coeff(element_t e);
+PBC_EXTERN element_ptr PBC_STDCALL curve_b_coeff(element_t e);
+PBC_EXTERN element_ptr PBC_STDCALL curve_field_a_coeff(field_t f);
+PBC_EXTERN element_ptr PBC_STDCALL curve_field_b_coeff(field_t f);
 
-PBC_DECLSPEC_EXPORT void PBC_STDCALL curve_from_x(element_ptr e, element_t x);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL curve_set_si(element_t R, long int x, long int y);
-PBC_DECLSPEC_EXPORT void PBC_STDCALL curve_set_gen_no_cofac(element_ptr a);
+PBC_EXTERN void PBC_STDCALL curve_from_x(element_ptr e, element_t x);
+PBC_EXTERN void PBC_STDCALL curve_set_si(element_t R, long int x, long int y);
+PBC_EXTERN void PBC_STDCALL curve_set_gen_no_cofac(element_ptr a);
 
 #ifndef _MSC_VER
 #pragma GCC visibility pop
